@@ -15,7 +15,13 @@ class Participant(Base):
     phone = Column(String, nullable=True)
     organization = Column(String, nullable=True)
     raw_skills_text = Column(String, nullable=True)
+    role = Column(String, default="participant")  # participant | reviewer | admin
     created_at = Column(DateTime, default=datetime.utcnow)
+
+    # Demographic fields are used ONLY in aggregate, statistical bias-detection
+    # comparisons (PS1 section 6.3). Never shown to reviewers, never used in scoring.
+    gender = Column(String, nullable=True)
+    region = Column(String, nullable=True)
 
     skills = relationship("ParticipantSkill", back_populates="participant")
 
