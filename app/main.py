@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.database import Base, engine
+from app.core.database import Base, engine
 from app import models
 from app.models import communication
 from app.routers.v1 import participants, duplicates, skills, teams, projects, reviewers, evaluations, results, analytics
@@ -25,11 +25,5 @@ app.include_router(analytics.router)
 app.include_router(communications_router.router)
 
 @app.get("/health")
-def
-
-
-rm -f pulseforge.db
-python -m pytest tests/ -v
-git add .
-git commit -m "feat: JWT auth, communications, Dockerfile"
-git push
+def health():
+    return {"status": "ok", "service": "pulseforge-backend"}
